@@ -1,7 +1,7 @@
 # LIRI
 LIRI is a Language Interpretation and Recognition Interface using the command line node app.
 
-![Twitter Screenshot] (./Screenshots/my-tweets.PNG)
+![Twitter Screenshot] (Screenshots/my-tweets.PNG)
 
 ![Spotify Screenshot] (/Screenshots/spotify.PNG)
 

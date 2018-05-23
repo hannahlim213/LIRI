@@ -22,8 +22,8 @@ var askUser = function () {
             displayTweets();
         } else if (userInput === "spotify-this-song") {
             displaySpotifySong(userInput2);
-        } else if (userInput === "movie-this" && userInput2) {
-            displayMovie();
+        } else if (userInput === "movie-this") {
+            displayMovie(userInput2);
         } else if (userInput === "do-what-it-says") {
             displayDoWhat();
         }
@@ -95,22 +95,32 @@ function displaySpotifySong(userInput2) {
 }
 
 // grab and assemble move name and store in variable movieName
-var nodeArgs = process.argv;
-var movieName = "";
-var queryURL = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+// var movieName = "";
 
-for (var i = 3; i < process.argv.length; i++) {
-    if (nodeArgs > 2 && i < nodeArgs.length) {
-        movieName = movieName + "+" + nodeArgs[i];
-    } else {
-        movieName = nodeArgs[3];
-    }
-}
+
+// for (var i = 3; i < process.argv.length; i++) {
+//     if (userInput2 > 2 && i < userInput2.length) {
+//         movieName = movieName + "+" + userInput2[i];
+//     } else {
+//         movieName = userInput2[3];
+//     }
+// }
 
 // displayMovie function
-function displayMovie() {
-    request(queryURL, function (error, response, body) {
+function displayMovie(userInput2) {
+
+    inquirer.prompt([
+        {
+            name: "movie",
+            message: "What movie do you want to search for?"
+        }
+    ]).then(function(answer2) {
+        // console.log(queryURL)
+        userInput2 = answer2.movie;
+        var queryURL = "http://www.omdbapi.com/?t=" + userInput2 + "&y=&plot=short&apikey=trilogy";
+            request(queryURL, function (error, response, body) {
         if (!error && response.statusCode === 200) {
+            // console.log(JSON.parse(body))
             console.log("Title: " + JSON.parse(body).Title)
             console.log("Year: " + JSON.parse(body).Year)
             console.log("IMDB Rating: " + JSON.parse(body).imdbRating)
@@ -120,6 +130,7 @@ function displayMovie() {
             console.log("Actors: " + JSON.parse(body).Actors)
         }
     });
+    })
 }
 
 // displayDoWhat function
