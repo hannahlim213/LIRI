@@ -104,22 +104,22 @@ function displayMovie(userInput2) {
             name: "movie",
             message: "What movie do you want to search for?"
         }
-    ]).then(function(answer2) {
+    ]).then(function (answer2) {
         // console.log(queryURL)
         userInput2 = answer2.movie;
         var queryURL = "http://www.omdbapi.com/?t=" + userInput2 + "&y=&plot=short&apikey=trilogy";
-            request(queryURL, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            // console.log(JSON.parse(body))
-            console.log("Title: " + JSON.parse(body).Title)
-            console.log("Year: " + JSON.parse(body).Year)
-            console.log("IMDB Rating: " + JSON.parse(body).imdbRating)
-            console.log("Rotten Tomatoes :" + JSON.parse(body).Ratings[1].Value)
-            console.log("Country: " + JSON.parse(body).Country)
-            console.log("Plot: " + JSON.parse(body).Plot)
-            console.log("Actors: " + JSON.parse(body).Actors)
-        }
-    });
+        request(queryURL, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                // console.log(JSON.parse(body))
+                console.log("Title: " + JSON.parse(body).Title)
+                console.log("Year: " + JSON.parse(body).Year)
+                console.log("IMDB Rating: " + JSON.parse(body).imdbRating)
+                console.log("Rotten Tomatoes :" + JSON.parse(body).Ratings[1].Value)
+                console.log("Country: " + JSON.parse(body).Country)
+                console.log("Plot: " + JSON.parse(body).Plot)
+                console.log("Actors: " + JSON.parse(body).Actors)
+            }
+        });
     })
 }
 
@@ -129,10 +129,26 @@ function displayDoWhat() {
         if (error) {
             return console.log(error);
         }
-        console.log(data)
+     
         var dataArr = data.split(",")
-
-        console.log(dataArr)
+        // show song details from random.txt
+        var spotify = new Spotify(spotifyKeys)
+        // display artist, song name, preview link of song, album of song
+        spotify.search({ type: 'track', query: dataArr[1] }, function (err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            } else {
+                // artist, song name, preview link of song from spotify, album
+                // artist
+                console.log("Artist Name: " + data.tracks.items[1].artists[0].name);
+                // album name
+                console.log("Album Name: " + data.tracks.items[1].album.name);
+                // preview link of song from spotify
+                console.log("Spotify Link: " + data.tracks.items[1].external_urls.spotify);
+                // song name
+                console.log("Song Title: " + data.tracks.items[1].name);
+            }
+        });
     })
 }
 // displayDoWhat();

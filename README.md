@@ -10,6 +10,9 @@ Spotify Example:
 Movies Example:
 ![Movies Screenshot](Screenshots/movies.PNG)
 
+Do-what-it-says Example:
+![Do-what-it-says Screenshot](Screenshots/do-what.PNG)
+
 ## Getting Started
 
 Open up and download the [project link](https://github.com/hannahlim213/LIRI) 
