@@ -96,17 +96,6 @@ function displaySpotifySong(userInput2) {
 }
 
 // grab and assemble move name and store in variable movieName
-// var movieName = "";
-
-
-// for (var i = 3; i < process.argv.length; i++) {
-//     if (userInput2 > 2 && i < userInput2.length) {
-//         movieName = movieName + "+" + userInput2[i];
-//     } else {
-//         movieName = userInput2[3];
-//     }
-// }
-
 // displayMovie function
 function displayMovie(userInput2) {
 
