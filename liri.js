@@ -54,7 +54,7 @@ function displayTweets() {
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
             for (var i = 0; i <= 19; i++) {
-                console.log("---------------------------")
+                console.log("----------------------------------")
                 console.log(tweets[i].text)
             }
         }
